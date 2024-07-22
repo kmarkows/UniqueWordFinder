@@ -9,7 +9,7 @@
 std::mutex m;
 uint32_t bufferCount = 0;
 
-void FileAnalyserChunksTP::analyse(std::unordered_set<std::string> &words)
+void FileAnalyserChunksTP::analyse(std::unordered_set<std::string> &words) const
 {
 	std::ifstream file(fileDirectory);
 
@@ -20,13 +20,20 @@ void FileAnalyserChunksTP::analyse(std::unordered_set<std::string> &words)
 		ThreadPool tp;
 		while (file.read(buffer, 1024))
 		{
-			// bufferCount++;
 			tp.enque([&] {
 				std::unique_lock<std::mutex> lock(m);
 				bufferCount++;
 				WordFinder::find(buffer, words);
 				m.unlock();
 			});
+		}
+
+		const std::streamsize bytesLeft = file.gcount();
+		std::cout << "bytesLeft:" << bytesLeft << std::endl;
+		if (bytesLeft > 0)
+		{
+			const std::string last_chunk(buffer, bytesLeft);
+			WordFinder::find(buffer, words);
 		}
 	}
 	else

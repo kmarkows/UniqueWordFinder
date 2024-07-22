@@ -1,7 +1,6 @@
 #include "WordFinder.hpp"
 
 #include <iostream>
-#include <string.h>
 
 void WordFinder::find(const char *leeters, std::unordered_set<std::string> &words)
 {

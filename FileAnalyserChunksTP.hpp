@@ -9,9 +9,8 @@ class FileAnalyserChunksTP
 {
   public:
 	FileAnalyserChunksTP(const std::string givenFileDirectory) : fileDirectory(givenFileDirectory){};
-	void analyse(std::unordered_set<std::string> &words);
+	void analyse(std::unordered_set<std::string> &words) const;
 
   private:
-	std::unordered_set<std::string> words{};
 	std::string fileDirectory{};
 };

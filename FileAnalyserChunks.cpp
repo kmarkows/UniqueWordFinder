@@ -6,7 +6,7 @@
 
 #include "WordFinder.hpp"
 
-void FileAnalyserChunks::analyse(std::unordered_set<std::string> &words)
+void FileAnalyserChunks::analyse(std::unordered_set<std::string> &words) const
 {
 	std::ifstream file(fileDirectory);
 
@@ -21,11 +21,11 @@ void FileAnalyserChunks::analyse(std::unordered_set<std::string> &words)
 			WordFinder::find(buffer, words);
 		}
 
-		std::streamsize bytesLeft = file.gcount();
+		const std::streamsize bytesLeft = file.gcount();
 		std::cout << "bytesLeft:" << bytesLeft << std::endl;
 		if (bytesLeft > 0)
 		{
-			std::string last_chunk(buffer, bytesLeft);
+			const std::string last_chunk(buffer, bytesLeft);
 			WordFinder::find(buffer, words);
 		}
 		std::cout << "bufferCount: " << (int)bufferCount << std::endl;

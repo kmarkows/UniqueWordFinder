@@ -15,7 +15,7 @@ TEST_F(TestWordFinder, normalSentence)
 	WordFinder::find(leeters, words);
 	EXPECT_EQ(words.size(), 4);
 
-	std::unordered_set<std::string> outputWords{"a", "dog", "and", "horse"};
+	const std::unordered_set<std::string> outputWords{"a", "dog", "and", "horse"};
 	EXPECT_EQ(words, outputWords);
 }
 
@@ -37,7 +37,7 @@ TEST_F(TestWordFinder, charactersOnly)
 	WordFinder::find(leeters, words);
 	EXPECT_EQ(words.size(), 1);
 
-	std::unordered_set<std::string> outputWords{"abdnjfdjnvdjobsjodbn"};
+	const std::unordered_set<std::string> outputWords{"abdnjfdjnvdjobsjodbn"};
 	EXPECT_EQ(words, outputWords);
 }
 

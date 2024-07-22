@@ -48,7 +48,6 @@ class ThreadPool
 		{
 			thread.join();
 		}
-		std::cout << "~ThreadPool()" << std::endl;
 	}
 
   private:
